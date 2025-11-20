@@ -195,6 +195,54 @@ public:
         cout << endl;
     }
 
+    // Minimum Spanning Tree (Prim's Algorithm)
+    void minimumSpanningTree() {
+        vector<int> key(SIZE, INT_MAX);     // Minimum weight edge to each node
+        vector<int> parent(SIZE, -1);       // To store MST structure
+        vector<bool> inMST(SIZE, false);    // Track included nodes
+
+        key[0] = 0; // Start MST from node 0
+
+        for (int i = 0; i < SIZE - 1; i++) {
+            // Pick the minimum key vertex not yet in MST
+            int minKey = INT_MAX, u = -1;
+            for (int v = 0; v < SIZE; v++) {
+                if (!inMST[v] && key[v] < minKey) {
+                    minKey = key[v];
+                    u = v;
+                }
+            }
+
+            inMST[u] = true;
+
+            // Relax edges
+            for (auto& p : adjList[u]) {
+                int v = p.first;
+                int weight = p.second;
+
+                if (!inMST[v] && weight < key[v]) {
+                    parent[v] = u;
+                    key[v] = weight;
+                }
+            }
+        }
+
+        // Print the MST
+        cout << "Minimum Spanning Tree (Road Network):\n";
+        cout << "=====================================\n";
+
+        for (int i = 1; i < SIZE; i++) {
+            if (parent[i] != -1) {
+                cout << "Road between "
+                    << intersectionNames[parent[i]]
+                    << " and " << intersectionNames[i]
+                    << " (Distance: " << key[i] << " blocks)\n";
+            }
+        }
+
+        cout << endl;
+    }
+
 };
 
 int main() {
@@ -225,6 +273,7 @@ int main() {
     graph.dfs(0);
     graph.bfs(0);
     graph.shortestPath(0);
+    graph.minimumSpanningTree();
 
     return 0;
 }
