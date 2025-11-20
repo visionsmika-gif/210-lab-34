@@ -245,6 +245,8 @@ public:
 
 };
 
+int getUserChoice();
+
 int main() {
     // Creates a vector of graph edges/weights
     vector<Edge> edges = {
@@ -266,6 +268,30 @@ int main() {
     // Creates graph
     Graph graph(edges);
 
+    int choice;
+    do {
+        choice = getUserChoice();
+
+        if (choice == 1) {
+            graph.printGraph();
+        }
+        else if (choice == 2) {
+            graph.bfs(0);
+        }
+        else if (choice == 3) {
+            graph.dfs(0);
+        }
+        else if (choice == 4) {
+            graph.shortestPath(0);
+        }
+        else if (choice == 5) {
+            graph.minimumSpanningTree();
+        }
+        cout << "\n";
+
+    } while (choice != 0);
+
+    /*
     // Prints adjacency list representation of graph
     graph.printGraph();
     cout << "\n";
@@ -274,6 +300,31 @@ int main() {
     graph.bfs(0);
     graph.shortestPath(0);
     graph.minimumSpanningTree();
+    */
 
     return 0;
+}
+
+int getUserChoice() {
+    int choice;
+
+    cout << "City Road Network Menu:\n";
+    cout << "[1] Display city road network\n";
+    cout << "[2] Inspect roads (BFS)\n";
+    cout << "[3] Explore city paths (DFS)\n";
+    cout << "[4] Calculate shortest paths\n";
+    cout << "[5] Find Minimum Spanning Tree\n";
+    cout << "[0] Exit\n";
+    
+    do {
+        cout << "Enter your choice: ";
+        cin >> choice;
+        if (choice < 0 || choice > 5) {
+            cout << "ERROR: Invalid choice. Please enter a number from 0 to 5.\n";
+        }
+    } while (choice < 0 || choice > 5);
+
+    cout << "\n";
+
+    return choice;
 }
