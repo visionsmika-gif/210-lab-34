@@ -81,23 +81,22 @@ public:
         visited[start] = true;
 
         cout << "BFS starting from vertex " << start << ":" << endl;
-
         while (!q.empty()) {
-            int node = q.front();
+            int currentVertex = q.front();
             q.pop();
-            cout << node << " ";
+            cout << currentVertex << " ";
 
-            for (auto& p : adjList[node]) {
-                int neighbor = p.first;
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    q.push(neighbor);
+            // Visit all adjacent vertices
+            for (Pair neighbor : adjList[currentVertex]) {
+                int dest = neighbor.first;
+                if (!visited[dest]) {
+                    visited[dest] = true;
+                    q.push(dest);
                 }
             }
         }
         cout << endl;
     }
-
 };
 
 int main() {
