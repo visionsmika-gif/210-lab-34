@@ -142,6 +142,59 @@ public:
         }
         cout << endl;
     }
+
+
+
+    // Shortest Path (Dijkstra's Algorithm)
+    void shortestPath(int start) {
+        // distance array, initialize all distances as "infinity"
+        vector<int> dist(SIZE, INT_MAX);
+        dist[start] = 0;
+
+        // Min-heap priority queue (distance, node)
+        priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
+        pq.push({ 0, start });
+
+        while (!pq.empty()) {
+            int currentDist = pq.top().first;
+            int node = pq.top().second;
+            pq.pop();
+
+            // Skip if we already found a better path
+            if (currentDist > dist[node])
+                continue;
+
+            // Check neighbors
+            for (auto& p : adjList[node]) {
+                int neighbor = p.first;
+                int weight = p.second;
+
+                // Relaxation step
+                if (dist[node] + weight < dist[neighbor]) {
+                    dist[neighbor] = dist[node] + weight;
+                    pq.push({ dist[neighbor], neighbor });
+                }
+            }
+        }
+
+        // Print the results
+        cout << "Shortest path distances from Intersection "
+            << start << " (" << intersectionNames[start] << "):\n";
+
+        for (int i = 0; i < SIZE; i++) {
+            cout << start << " -> " << i << " : ";
+
+            if (dist[i] == INT_MAX)
+                cout << "unreachable";
+            else
+                cout << dist[i];
+
+            cout << "\n";
+        }
+
+        cout << endl;
+    }
+
 };
 
 int main() {
@@ -171,6 +224,7 @@ int main() {
 
     graph.dfs(0);
     graph.bfs(0);
+    graph.shortestPath(0);
 
     return 0;
 }
