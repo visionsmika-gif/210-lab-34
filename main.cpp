@@ -104,17 +104,17 @@ int main() {
     vector<Edge> edges = {
         // (x, y, w) —> edge from x to y having weight w
 
-        // Nodes 5 and 6 have been deleted
-        {0,1,12}, {0,2,8}, {0,3,21},
-        {2,3,6}, {2,4,4},
+        // Delete 2 nodes (nodes 5 and 6 have been deleted).
+        // Also change the weights.
+        {0,1,16}, {0,2,4}, {0,3,7},
+        {2,3,5}, {2,4,2},
 
-        // Add 6 nodes
+        // Add 6 nodes.
         {5, 2, 1}, {5, 8, 2},   // Nodes 5 and 8
         {6, 5, 3},              // Node 6
         {7, 1, 20},             // Node 7
         {9, 8, 4},              // Node 9
         {10, 8, 15}, {10, 9, 2} // Node 10
-
     };
 
     // Creates graph
