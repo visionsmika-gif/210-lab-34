@@ -12,6 +12,20 @@ struct Edge {
 
 typedef pair<int, int> Pair;  // Creates alias 'Pair' for the pair<int,int> data type
 
+vector<string> intersectionNames = {
+    "Central Station",
+    "5th Avenue",
+    "Pine Street",
+    "Market Square",
+    "Liberty Plaza",
+    "East Gate",
+    "Riverside Drive",
+    "Hilltop Road",
+    "Sunset Boulevard",
+    "Oakwood Junction",
+    "Harbor Point"
+};
+
 class Graph {
 public:
     // a vector of vectors of Pairs to represent an adjacency list
@@ -54,17 +68,31 @@ public:
         s.push(start);
         visited[start] = true;
 
-        cout << "DFS starting from vertex " << start << ":" << endl;
+        // cout << "DFS starting from vertex " << start << ":" << endl;
+
+        cout << "City Exploration (DFS) from Intersection "
+            << start << " (" << intersectionNames[start] << ")\n";
+        cout << "Purpose: Finding long, winding exploration paths\n";
+        cout << "==============================================\n";
+
+
         while (!s.empty()) {
             int currentVertex = s.top();
             s.pop();
-            cout << currentVertex << " ";
+
+            // cout << currentVertex << " ";
+            cout << "Exploring " << intersectionNames[currentVertex] << "\n";
+
 
             // Visit all adjacent vertices
             for (Pair neighbor : adjList[currentVertex]) {
                 int dest = neighbor.first;
+                int distance = neighbor.second;
+
                 if (!visited[dest]) {
                     visited[dest] = true;
+                    cout << "   → Path toward " << intersectionNames[dest]
+                        << " (Distance: " << distance << " blocks)\n";
                     s.push(dest);
                 }
             }
@@ -80,17 +108,29 @@ public:
         q.push(start);
         visited[start] = true;
 
-        cout << "BFS starting from vertex " << start << ":" << endl;
+        // cout << "BFS starting from vertex " << start << ":" << endl;
+
+        cout << "Layer-by-Layer Road Inspection (BFS) from Intersection "
+            << start << " (" << intersectionNames[start] << ")\n";
+        cout << "Purpose: Discovering nearest destinations first\n";
+        cout << "==============================================\n";
+
         while (!q.empty()) {
             int currentVertex = q.front();
             q.pop();
-            cout << currentVertex << " ";
+
+            // cout << currentVertex << " ";
+            cout << "Checking " << intersectionNames[currentVertex] << "\n";
 
             // Visit all adjacent vertices
             for (Pair neighbor : adjList[currentVertex]) {
                 int dest = neighbor.first;
+                int distance = neighbor.second;
+
                 if (!visited[dest]) {
                     visited[dest] = true;
+                    cout << "   → Nearby: " << intersectionNames[dest]
+                        << " (Distance: " << distance << " blocks)\n";
                     q.push(dest);
                 }
             }
