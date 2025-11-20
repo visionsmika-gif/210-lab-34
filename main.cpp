@@ -52,22 +52,20 @@ public:
         stack<int> s;
 
         s.push(start);
+        visited[start] = true;
 
         cout << "DFS starting from vertex " << start << ":" << endl;
-
         while (!s.empty()) {
-            int node = s.top();
+            int currentVertex = s.top();
             s.pop();
+            cout << currentVertex << " ";
 
-            if (!visited[node]) {
-                visited[node] = true;
-                cout << node << " ";
-
-                // push neighbors in reverse order so output matches expected sequence
-                for (int i = adjList[node].size() - 1; i >= 0; i--) {
-                    int neighbor = adjList[node][i].first;
-                    if (!visited[neighbor])
-                        s.push(neighbor);
+            // Visit all adjacent vertices
+            for (Pair neighbor : adjList[currentVertex]) {
+                int dest = neighbor.first;
+                if (!visited[dest]) {
+                    visited[dest] = true;
+                    s.push(dest);
                 }
             }
         }
