@@ -84,7 +84,6 @@ public:
         cout << "Purpose: Finding long, winding exploration paths\n";
         cout << "==============================================\n";
 
-
         while (!s.empty()) {
             int currentVertex = s.top();
             s.pop();
@@ -143,8 +142,6 @@ public:
             }
         }
     }
-
-
 
     // Shortest Path (Dijkstra's Algorithm)
     void shortestPath(int start) {
@@ -298,7 +295,7 @@ int main() {
 // Function to print a menu of choices and return the user's choice (an int).
 int getUserChoice() {
     int choice;
-
+    // Menu
     cout << "City Road Network Menu:\n";
     cout << "[1] Display city road network\n";
     cout << "[2] Inspect roads (BFS)\n";
@@ -306,7 +303,7 @@ int getUserChoice() {
     cout << "[4] Calculate shortest paths\n";
     cout << "[5] Find Minimum Spanning Tree\n";
     cout << "[0] Exit\n";
-    
+    // Get user's choice.
     do {
         cout << "Enter your choice: ";
         cin >> choice;
