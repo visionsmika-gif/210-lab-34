@@ -1,3 +1,6 @@
+// COMSC-210 | Lab 34 | Mika Aquino
+// IDE used: Visual Studio 2022
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -265,6 +268,7 @@ int main() {
     // Creates graph
     Graph graph(edges);
 
+    // Allow the user to interact through a menu.
     int choice;
     do {
         choice = getUserChoice();
@@ -288,20 +292,10 @@ int main() {
 
     } while (choice != 0);
 
-    /*
-    // Prints adjacency list representation of graph
-    graph.printGraph();
-    cout << "\n";
-
-    graph.dfs(0);
-    graph.bfs(0);
-    graph.shortestPath(0);
-    graph.minimumSpanningTree();
-    */
-
     return 0;
 }
 
+// Function to print a menu of choices and return the user's choice (an int).
 int getUserChoice() {
     int choice;
 
