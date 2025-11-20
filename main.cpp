@@ -4,7 +4,7 @@
 #include <stack>
 using namespace std;
 
-const int SIZE = 9;
+const int SIZE = 11;
 
 struct Edge {
     int src, dest, weight;
@@ -109,19 +109,12 @@ int main() {
         {2,3,6}, {2,4,4},
 
         // Add 6 nodes
-        {5, 2, 1}, {5, 8, 2},    // Nodes 5 and 8
+        {5, 2, 1}, {5, 8, 2},   // Nodes 5 and 8
         {6, 5, 3},              // Node 6
         {7, 1, 20},             // Node 7
-        {8, 9, 4}               // Node 9
+        {9, 8, 4},              // Node 9
+        {10, 8, 15}, {10, 9, 2} // Node 10
 
-
-
-
-
-
-        /*
-        {0,1,12},{0,2,8},{0,3,21},{2,3,6},{2,6,2},{5,6,6},{4,5,9},{2,4,4},{2,5,5}
-        */
     };
 
     // Creates graph
