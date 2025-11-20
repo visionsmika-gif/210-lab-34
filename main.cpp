@@ -51,12 +51,26 @@ public:
 
     // Print the graph's adjacency list
     void printGraph() {
-        cout << "Graph's adjacency list:" << endl;
+        // cout << "Graph's adjacency list:" << endl;
+        cout << "City Road Network:" << endl;
+        cout << "==============================" << endl;
+        /* for (int i = 0; i < adjList.size(); i++) {
+            cout << i << " --> "; */
+
         for (int i = 0; i < adjList.size(); i++) {
-            cout << i << " --> ";
-            for (Pair v : adjList[i])
-                cout << "(" << v.first << ", " << v.second << ") ";
-            cout << endl;
+            cout << "Intersection " << i
+                << " (" << intersectionNames[i] << ") connects to:\n";
+
+            for (Pair v : adjList[i]) {
+                int dest = v.first;
+                int distance = v.second;
+
+                cout << "   -> Intersection " << dest
+                    << " (Distance: " << distance << " blocks)\n";
+
+                // cout << "(" << v.first << ", " << v.second << ") ";
+                // cout << endl;
+            }
         }
     }
 
@@ -91,7 +105,7 @@ public:
 
                 if (!visited[dest]) {
                     visited[dest] = true;
-                    cout << "   → Path toward " << intersectionNames[dest]
+                    cout << "   -> Path toward " << intersectionNames[dest]
                         << " (Distance: " << distance << " blocks)\n";
                     s.push(dest);
                 }
@@ -129,7 +143,7 @@ public:
 
                 if (!visited[dest]) {
                     visited[dest] = true;
-                    cout << "   → Nearby: " << intersectionNames[dest]
+                    cout << "   -> Nearby: " << intersectionNames[dest]
                         << " (Distance: " << distance << " blocks)\n";
                     q.push(dest);
                 }
@@ -162,6 +176,7 @@ int main() {
 
     // Prints adjacency list representation of graph
     graph.printGraph();
+    cout << "\n";
 
     graph.dfs(0);
     graph.bfs(0);
