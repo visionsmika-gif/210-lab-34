@@ -4,7 +4,7 @@
 #include <stack>
 using namespace std;
 
-const int SIZE = 7;
+const int SIZE = 9;
 
 struct Edge {
     int src, dest, weight;
@@ -103,7 +103,20 @@ int main() {
     // Creates a vector of graph edges/weights
     vector<Edge> edges = {
         // (x, y, w) —> edge from x to y having weight w
+
+        // Old nodes
+        {0,1,12}, {0,2,8}, {0,3,21},
+        {2,3,6},{2,6,2},{2,4,4},{2,5,5},
+        {4,5,9},
+        {5,6,6},
+
+
+
+
+
+        /*
         {0,1,12},{0,2,8},{0,3,21},{2,3,6},{2,6,2},{5,6,6},{4,5,9},{2,4,4},{2,5,5}
+        */
     };
 
     // Creates graph
