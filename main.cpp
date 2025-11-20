@@ -103,7 +103,6 @@ public:
                 }
             }
         }
-        cout << endl;
     }
 
     // Breadth-First Search (BFS)
@@ -140,7 +139,6 @@ public:
                 }
             }
         }
-        cout << endl;
     }
 
 
@@ -178,21 +176,23 @@ public:
         }
 
         // Print the results
-        cout << "Shortest path distances from Intersection "
-            << start << " (" << intersectionNames[start] << "):\n";
+        cout << "Shortest Travel Distances from Intersection "
+            << start << " (" << intersectionNames[start] << ")\n";
+        cout << "Purpose: Fastest routes to all major intersections\n";
+        cout << "==============================================\n";
 
         for (int i = 0; i < SIZE; i++) {
-            cout << start << " -> " << i << " : ";
+            cout << "To Intersection " << i
+                << " (" << intersectionNames[i] << "): ";
+            // cout << start << " -> " << i << " : ";
 
             if (dist[i] == INT_MAX)
                 cout << "unreachable";
             else
-                cout << dist[i];
+                cout << dist[i] << " blocks";
 
             cout << "\n";
         }
-
-        cout << endl;
     }
 
     // Minimum Spanning Tree (Prim's Algorithm)
@@ -239,10 +239,7 @@ public:
                     << " (Distance: " << key[i] << " blocks)\n";
             }
         }
-
-        cout << endl;
     }
-
 };
 
 int getUserChoice();
