@@ -51,11 +51,8 @@ public:
 
     // Print the graph's adjacency list
     void printGraph() {
-        // cout << "Graph's adjacency list:" << endl;
         cout << "City Road Network:" << endl;
         cout << "==============================" << endl;
-        /* for (int i = 0; i < adjList.size(); i++) {
-            cout << i << " --> "; */
 
         for (int i = 0; i < adjList.size(); i++) {
             cout << "Intersection " << i
@@ -67,9 +64,6 @@ public:
 
                 cout << "   -> Intersection " << dest
                     << " (Distance: " << distance << " blocks)\n";
-
-                // cout << "(" << v.first << ", " << v.second << ") ";
-                // cout << endl;
             }
         }
     }
@@ -82,8 +76,6 @@ public:
         s.push(start);
         visited[start] = true;
 
-        // cout << "DFS starting from vertex " << start << ":" << endl;
-
         cout << "City Exploration (DFS) from Intersection "
             << start << " (" << intersectionNames[start] << ")\n";
         cout << "Purpose: Finding long, winding exploration paths\n";
@@ -94,9 +86,8 @@ public:
             int currentVertex = s.top();
             s.pop();
 
-            // cout << currentVertex << " ";
-            cout << "Exploring " << intersectionNames[currentVertex] << "\n";
-
+            cout << "Exploring Intersection " << currentVertex
+                << " (" << intersectionNames[currentVertex] << ")\n";
 
             // Visit all adjacent vertices
             for (Pair neighbor : adjList[currentVertex]) {
@@ -105,8 +96,9 @@ public:
 
                 if (!visited[dest]) {
                     visited[dest] = true;
-                    cout << "   -> Path toward " << intersectionNames[dest]
-                        << " (Distance: " << distance << " blocks)\n";
+                    cout << "   -> Path toward Intersection " << dest
+                        << " (" << intersectionNames[dest]
+                        << ") - Distance: " << distance << " blocks\n";
                     s.push(dest);
                 }
             }
@@ -122,8 +114,6 @@ public:
         q.push(start);
         visited[start] = true;
 
-        // cout << "BFS starting from vertex " << start << ":" << endl;
-
         cout << "Layer-by-Layer Road Inspection (BFS) from Intersection "
             << start << " (" << intersectionNames[start] << ")\n";
         cout << "Purpose: Discovering nearest destinations first\n";
@@ -133,8 +123,8 @@ public:
             int currentVertex = q.front();
             q.pop();
 
-            // cout << currentVertex << " ";
-            cout << "Checking " << intersectionNames[currentVertex] << "\n";
+            cout << "Checking Intersection " << currentVertex
+                << " (" << intersectionNames[currentVertex] << ")\n";
 
             // Visit all adjacent vertices
             for (Pair neighbor : adjList[currentVertex]) {
@@ -143,8 +133,9 @@ public:
 
                 if (!visited[dest]) {
                     visited[dest] = true;
-                    cout << "   -> Nearby: " << intersectionNames[dest]
-                        << " (Distance: " << distance << " blocks)\n";
+                    cout << "   -> Nearby: Intersection " << dest
+                        << " (" << intersectionNames[dest]
+                        << ") - Distance: " << distance << " blocks\n";
                     q.push(dest);
                 }
             }
